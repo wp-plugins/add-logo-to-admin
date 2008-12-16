@@ -47,12 +47,8 @@ NOTE: You can also change it to logo.gif or whichever file format you prefer. I 
 
 == Screenshots ==
 
-1. screenshot001.jpg - Admin before and after
-2. screenshots002.jpg - Login page before and after
-
-== Usage ==
-
-1. Just activate and enjoy!  No configuration required.
+1. Admin before and after
+2. Login page before and after
 
 == Change Log ==
 
