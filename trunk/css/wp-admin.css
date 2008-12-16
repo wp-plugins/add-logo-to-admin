@@ -1,0 +1,14 @@
+#header-logo {
+	display: none;
+	}
+	
+#newLogo {
+	padding: 0 0 10px;
+	}
+	
+#wphead {
+	height: auto;
+	float: left;
+	width: 100%;
+	}
+	
