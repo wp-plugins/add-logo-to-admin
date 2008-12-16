@@ -16,16 +16,16 @@ This plugin allows a user to customize their admin panel by adding their own log
 
 == Installation ==
 
-1. Unzip the add-logo.zip file.
-2. Create your own logo and name it logo.png. Add it to add-logo/images folder.
-3. Upload the `add-logo` folder to the `/wp-content/plugins/` directory.
+1. Unzip the add-logo-to-admin.zip file.
+2. Create your own logo and name it logo.png. Add it to add-logo-to-admin/images folder.
+3. Upload the `add-logo-to-admin` folder to the `/wp-content/plugins/` directory.
 4. Activate the plugin through the 'Plugins' menu in WordPress.
 
 == Frequently Asked Questions == 
 
 1) How do I add my own logo?
 
-Create your own logo and name it logo.png. Add it to add-logo/images folder.
+Create your own logo and name it logo.png. Add it to add-logo-to-admin/images folder.
 
 2) How big does my logo need to be?
 
@@ -37,11 +37,11 @@ Yes it can. But you would need to edit two lines in two files of the plugin to m
 
 Open file js/login.js and change line 8 to
 
-var imgSrc = "../wp-content/plugins/add-logo/images/logo.jpg";
+var imgSrc = "../wp-content/plugins/add-logo-to-admin/images/logo.jpg";
 
 Open file js/admin.js and change line 8 to 
 
-var imgSrc = "../wp-content/plugins/add-logo/images/logo.jpg";
+var imgSrc = "../wp-content/plugins/add-logo-to-admin/images/logo.jpg";
 
 NOTE: You can also change it to logo.gif or whichever file format you prefer. I chose .png to take advantage of the high quality transparency it offers.
 
@@ -53,7 +53,7 @@ NOTE: You can also change it to logo.gif or whichever file format you prefer. I 
 == Change Log ==
 
 1.0.1 (2008-12-16)
-Fixed the code to direct the proper plugin folder
+Fixed the code to direct to the proper plugin folder
 
 1.0 (2008-12-15)
 Initial Public Release
