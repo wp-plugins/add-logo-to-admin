@@ -5,7 +5,7 @@ function addLogo() {
 	myBody.innerHTML = "";
 
 	var img = document.createElement("img");
-	var imgSrc = "../wp-content/plugins/add-logo/images/logo.png";
+	var imgSrc = "../wp-content/plugins/add-logo-to-admin/images/logo.png";
 	img.setAttribute("src",imgSrc);
 	img.setAttribute("id", "newLogo");
 	
