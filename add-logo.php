@@ -4,7 +4,7 @@ Plugin Name: Add Logo to Admin
 Plugin URI: http://bavotasan.com/tidbits/add-your-logo-to-the-wordpress-admin-and-login-page/
 Description: Adds a custom logo to your site's Admin header and your login page.
 Author: c.bavota
-Version: 1.0.1
+Version: 1.0.2
 Author URI: http://bavotasan.com
 */
 
