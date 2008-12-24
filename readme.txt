@@ -45,10 +45,16 @@ You can make it any width or height.
 </ul>
 
 1.0.2 (2008-12-16)
-Fixed weirdness with extra folder
+<ul>
+<li>Fixed weirdness with extra folder</li>
+</ul>
 
 1.0.1 (2008-12-16)
-Fixed the code to direct to the proper plugin folder
+<ul>
+<li>Fixed the code to direct to the proper plugin folder</li>
+</ul>
 
 1.0 (2008-12-15)
-Initial Public Release
+<ul>
+<li>Initial Public Release</li>
+</ul>
