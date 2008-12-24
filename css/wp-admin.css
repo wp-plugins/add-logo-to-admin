@@ -12,3 +12,6 @@
 	width: 100%;
 	}
 	
+	#wphead h1 a {
+		display: none;
+		}

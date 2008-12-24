@@ -1,3 +1,7 @@
 #newLogo {
 	padding: 0 0 20px;
 	}
+
+#login h1 {
+	display: none;
+	}
