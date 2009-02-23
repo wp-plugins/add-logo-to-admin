@@ -4,7 +4,7 @@ Plugin Name: Add Logo to Admin
 Plugin URI: http://bavotasan.com/tidbits/add-your-logo-to-the-wordpress-admin-and-login-page/
 Description: Adds a custom logo to your site's Admin header and your login page.
 Author: c.bavota
-Version: 1.1
+Version: 1.2
 Author URI: http://bavotasan.com
 */
 
@@ -39,11 +39,12 @@ if(get_option('add_logo_on_admin') == "yes") {
 	if (is_admin()) {
 	add_action('admin_head', 'wp_admin_admin_css');
 	function wp_admin_admin_css() {
-		echo '<link rel="stylesheet" type="text/css" href="' . get_settings('siteurl') . '/wp-content/plugins/add-logo-to-admin/css/wp-admin.css" />'."\n";
+		echo '<link rel="stylesheet" type="text/css" href="' . get_option('siteurl') . '/wp-content/plugins/add-logo-to-admin/css/wp-admin.css" />'."\n";
     }
-	wp_enqueue_script('add_logo_admin_script', get_settings('siteurl') . '/wp-content/plugins/add-logo-to-admin/js/admin.js');
+	wp_enqueue_script('add_logo_admin_script', get_option('siteurl') . '/wp-content/plugins/add-logo-to-admin/js/admin.js');
 	wp_localize_script( 'add_logo_admin_script', 'newLogo', array(
-	  	'logo' => get_option('add_logo_logo')
+	  	'logo' => get_option('add_logo_logo'),
+	  	'site' => get_option('siteurl')
 		));
 	}
 }
@@ -52,9 +53,9 @@ if(get_option('add_logo_on_admin') == "yes") {
 if(get_option('add_logo_on_login') == "yes") {
 	add_action('login_head', 'wp_admin_login_css');
 	function wp_admin_login_css() {
-		echo '<link rel="stylesheet" type="text/css" href="' . get_settings('siteurl') . '/wp-content/plugins/add-logo-to-admin/css/login.css" />'."\n";
-		echo '<script type="text/javascript">' . "\n" . '/* <![CDATA[ */' . "\n" . '	newLogo = {' . "\n" . '	logo: "' . get_option('add_logo_logo') . '"' . "\n" . '	}' . "\n" . '/* ]]> */' . "\n" . '</script>' . "\n";
-    echo '<script type="text/javascript" src="'  . get_settings('siteurl') . '/wp-content/plugins/add-logo-to-admin/js/login.js"></script>'."\n";
+		echo '<link rel="stylesheet" type="text/css" href="' . get_option('siteurl') . '/wp-content/plugins/add-logo-to-admin/css/login.css" />'."\n";
+		echo '<script type="text/javascript">' . "\n" . '/* <![CDATA[ */' . "\n" . '	newLogo = {' . "\n" . '	logo: "' . get_option('add_logo_logo') . '",' . "\n" . '	site: "' . get_option('siteurl') . '"' . "\n" .'	}' . "\n" . '/* ]]> */' . "\n" . '</script>' . "\n";
+    echo '<script type="text/javascript" src="'  . get_option('siteurl') . '/wp-content/plugins/add-logo-to-admin/js/login.js"></script>'."\n";
 	}
 }
 
