@@ -1,0 +1,17 @@
+#newLogo {
+	padding: 0 0 10px 7px;
+	max-width: 314px;
+	margin: 0;
+	}
+
+#login h1 {
+	display: none;
+	}
+	
+#login {
+	text-align: center;
+	}
+	
+	#login p {
+		text-align: left;
+		}
