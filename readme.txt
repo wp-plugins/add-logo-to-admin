@@ -4,7 +4,7 @@ Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: custom logo, admin, login
 Requires at least: 2.7
 Tested up to: 2.7.1
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 
 Add a custom logo to your Admin header and to your login page.
 
@@ -35,6 +35,11 @@ You can make it any width or height, as well as any file format.
 2. Login page before and after
 
 == Change Log ==
+
+1.3.2 (2009-03-01)
+<ul>
+<li>Fixed issue with invading other admin pages save function</li>
+</ul>
 
 1.3.1 (2009-02-26)
 <ul>
