@@ -4,7 +4,7 @@ Plugin Name: Add Logo to Admin
 Plugin URI: http://bavotasan.com/tidbits/add-your-logo-to-the-wordpress-admin-and-login-page/
 Description: Adds a custom logo to your site's Admin header and your login page.
 Author: c.bavota
-Version: 1.3.2
+Version: 1.3.3
 Author URI: http://bavotasan.com
 */
 
@@ -64,14 +64,14 @@ if(stristr($_SERVER['REQUEST_URI'],'?page=add-logo-to-admin/add-logo.php')) {
   add_options_page('Add Logo to Admin', 'Add Logo to Admin', 10, __FILE__, 'my_plugin_options');
 }
 
-function addConfigureLink( $links ) { 
+function add_logo_settings_link( $links ) { 
   $settings_link = '<a href="options-general.php?page=add-logo-to-admin/add-logo.php">Settings</a>'; 
   array_unshift( $links, $settings_link ); 
   return $links; 
 }
  
 $plugin = plugin_basename(__FILE__); 
-add_filter("plugin_action_links_$plugin", 'addConfigureLink' );
+add_filter("plugin_action_links_$plugin", 'add_logo_settings_link' );
 
 //set default options
 function set_add_logo_options() {	
@@ -111,7 +111,7 @@ if(get_option('add_logo_on_login') == "yes") {
 	add_action('login_head', 'wp_admin_login_css');
 	function wp_admin_login_css() {
 		echo '<link rel="stylesheet" type="text/css" href="' . get_option('siteurl') . '/wp-content/plugins/add-logo-to-admin/css/login.css" />'."\n";
-		echo '<script type="text/javascript">' . "\n" . '/* <![CDATA[ */' . "\n" . '	newLogo = {' . "\n" . '	logo: "' . get_option('add_logo_logo') . '",' . "\n" . '	}' . "\n" . '/* ]]> */' . "\n" . '</script>' . "\n";
+		echo '<script type="text/javascript">' . "\n" . '/* <![CDATA[ */' . "\n" . '	newLogo = {' . "\n" . '	logo: "' . get_option('add_logo_logo') . '"' . "\n" . '	}' . "\n" . '/* ]]> */' . "\n" . '</script>' . "\n";
     echo '<script type="text/javascript" src="'  . get_option('siteurl') . '/wp-content/plugins/add-logo-to-admin/js/login.js"></script>'."\n";
 	}
 }
