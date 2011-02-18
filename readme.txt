@@ -1,16 +1,15 @@
 === Add Logo to Admin ===
 Contributors: c.bavota
 Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=1929921
-Tags: custom logo, admin, login
-Requires at least: 2.7
-Tested up to: 2.8
-Stable tag: 1.3.3
+Tags: custom logo, admin, login, wp-admin, admin logo
+Tested up to: 3.1
+Stable tag: 1.4
 
-Add a custom logo to your Admin header and to your login page.
+Add a custom logo to your wp-admin and login page.
 
 == Description ==
 
-This plugin allows a user to customize their Admin panel by adding their own logo to the header. It also replaces the WordPress logo on the login screen with the same custom logo.
+This plugin allows a user to customize their Admin panel by adding their own logo to the header. It also replaces the WordPress logo on the login screen with the same custom logo. Tested in Firefox, Safari, Chrome and IE.
 
 == Installation ==
 
@@ -27,7 +26,7 @@ Just go to Settings => Add Logo to Admin and upload the logo you would like to u
 
 2) How big does my logo need to be?
 
-You can make it any width or height, as well as any file format.
+Your logo should not exceed 326px by 67px or it will not fit perfectly on the login screen.
 
 == Screenshots ==
 
@@ -35,6 +34,13 @@ You can make it any width or height, as well as any file format.
 2. Login page before and after
 
 == Change Log ==
+
+1.4 (2011-02-18)
+<ul>
+<li>Updated for WP 3.1</li>
+<li>Removed extraneous CSS and JS files</li>
+<li>Improved coding</li>
+</ul>
 
 1.3.3 (2009-03-10)
 <ul>
