@@ -2,8 +2,8 @@
 Contributors: c.bavota
 Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=1929921
 Tags: custom logo, admin, login, wp-admin, admin logo
-Tested up to: 3.1
-Stable tag: 1.4
+Tested up to: 3.3
+Stable tag: 1.5
 
 Add a custom logo to your wp-admin and login page.
 
@@ -30,10 +30,17 @@ Your logo should not exceed 326px by 67px or it will not fit perfectly on the lo
 
 == Screenshots ==
 
-1. Admin before and after
-2. Login page before and after
+1. Add logo to Admin 
+2. Add logo to Login
 
 == Change Log ==
+
+1.5 (2012-01-12)
+<ul>
+<li>Updated for WP 3.3</li>
+<li>Improved coding</li>
+<li>Added security nonce</li>
+</ul>
 
 1.4 (2011-02-18)
 <ul>

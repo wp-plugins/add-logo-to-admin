@@ -4,7 +4,7 @@ Plugin Name: Add Logo to Admin
 Plugin URI: http://bavotasan.com/downloads/add-your-logo-to-the-wordpress-admin-and-login-page/
 Description: Adds a custom logo to your wp-admin and login page.
 Author: c.bavota
-Version: 1.4
+Version: 1.5
 Author URI: http://bavotasan.com
 */
 
@@ -30,6 +30,9 @@ function add_logo_init() {
 	}
 
 	if(!empty($_POST['add_logo_submit'])) {
+		if (!wp_verify_nonce($_POST['add_logo_to_admin_nonce'], 'add_logo_to_admin_nonce'))
+			exit();
+		
 		if ($_FILES["file"]["type"]){
 			$image = str_replace(" ", "-", $_FILES["file"]["name"]);
 			move_uploaded_file($_FILES["file"]["tmp_name"],
@@ -58,21 +61,29 @@ function add_logo_init() {
 	$add_logo_page = add_options_page('Add Logo to Admin', 'Add Logo to Admin', "manage_options", __FILE__, 'add_logo_options');
 
 	//add logo to admin if "yes" is selected
-	if(get_option('add_logo_on_admin') == "yes")
+	if(get_option('add_logo_on_admin') == "yes") {
 		add_action( "admin_head", 'add_logo_css' );
+		add_action( "admin_footer", 'add_logo_script' );
+	}
 }
 
 //add logo to admin if "yes" selected
 function add_logo_css() {
-	echo '<style type="text/css">
-#header-logo, #wphead h1 a { display: none; }
-#wphead { height: auto; float: left; width: 100%; }
+	$img = get_option('add_logo_logo');
+	if(!empty($img))
+		echo '<style type="text/css">
+#admin-logo { margin: 10px 0; padding: 0 0 5px; border-bottom: 1px solid #ddd; width: 100%; }
 </style>'."\n";
-	echo '<script type="text/javascript">
+}
+
+function add_logo_script() {
+	$img = get_option('add_logo_logo');
+	if(!empty($img))
+		echo '<script type="text/javascript">
 /* <![CDATA[ */
-jQuery(document).ready(function() {
-	jQuery("#site-heading a:first").html("<img src=\"'.get_option('add_logo_logo').'\" alt=\"\" />").show();
-});
+(function($) {
+	$(".wrap").prepend("<div id=\"admin-logo\"><img src=\"'.($img).'\" alt=\"\" /></div>");
+})(jQuery);
 /* ]]> */
 </script>';
 }
@@ -82,8 +93,8 @@ if(get_option('add_logo_on_login') == "yes") {
 	add_action('login_head', 'login_logo_css');	
 	function login_logo_css() {
 		echo '<style type="text/css">
-			h1 a { background-image: url('.get_option('add_logo_logo').'); }
-		</style>';
+.login h1 a { background-image: url('.get_option('add_logo_logo').'); }
+</style>'."\n";
 	}
 }
 
@@ -123,8 +134,6 @@ function add_logo_options() {
 	$default_login = get_option('add_logo_on_login');
 	$default_admin = get_option('add_logo_on_admin');
 	$the_logo = get_option('add_logo_logo');
-	if ($default_login == "yes") { $login_yes = "checked"; } else { $login_no = "checked"; }
-	if ($default_admin == "yes") { $admin_yes = "checked"; } else { $admin_no = "checked"; }
 	?>
     <div class="wrap">
         <h2>Add Logo to Admin</h2>
@@ -140,8 +149,8 @@ function add_logo_options() {
             <label for="add_logo_on_login">Would you like your logo to appear on the login page?</label>
         </th>
         <td>
-            <input type="radio" name="add_logo_on_login" value="yes" <?=$login_yes?> />&nbsp;Yes&nbsp;&nbsp;
-            <input type="radio" name="add_logo_on_login" value="no" <?=$login_no?> />&nbsp;No
+            <input type="radio" name="add_logo_on_login" value="yes" <?php checked($default_login, "yes"); ?> />&nbsp;Yes&nbsp;&nbsp;
+            <input type="radio" name="add_logo_on_login" value="no" <?php checked($default_login, "no"); ?> />&nbsp;No
         </td>
          </tr>   
         <tr valign="top">
@@ -149,8 +158,8 @@ function add_logo_options() {
             <label for="add_logo_on_admin">Would you like your logo to appear on the admin pages?</label>
         </th>
         <td>
-            <input type="radio" name="add_logo_on_admin" value="yes" <?=$admin_yes?> />&nbsp;Yes&nbsp;&nbsp;
-            <input type="radio" name="add_logo_on_admin" value="no" <?=$admin_no?> />&nbsp;No
+            <input type="radio" name="add_logo_on_admin" value="yes" <?php checked($default_admin, "yes"); ?> />&nbsp;Yes&nbsp;&nbsp;
+            <input type="radio" name="add_logo_on_admin" value="no" <?php checked($default_admin, "no"); ?> />&nbsp;No
         </td>
         </tr>
         <tr valign="top">
@@ -185,7 +194,8 @@ function add_logo_options() {
         <p class="submit">
         <input type="submit" name="add_logo_submit" class="button-primary" value="Save Changes" />
         </p>
-        </form>
+ 	    <?php if(function_exists('wp_nonce_field')) wp_nonce_field('add_logo_to_admin_nonce', 'add_logo_to_admin_nonce'); ?>
+       </form>
         <!-- Add Logo to Admin admin box end-->
     </div>
  <?php
