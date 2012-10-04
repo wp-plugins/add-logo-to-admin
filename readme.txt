@@ -1,16 +1,15 @@
 === Add Logo to Admin ===
 Contributors: c.bavota
-Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=1929921
-Tags: custom logo, admin, login
-Requires at least: 2.7
-Tested up to: 2.8
-Stable tag: 1.3.3
+Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4W58JWNBHWKK4
+Tags: custom logo, admin, login, wp-admin, admin logo
+Tested up to: 3.4.2
+Stable tag: 1.5.1
 
-Add a custom logo to your Admin header and to your login page.
+Add a custom logo to your wp-admin and login page.
 
 == Description ==
 
-This plugin allows a user to customize their Admin panel by adding their own logo to the header. It also replaces the WordPress logo on the login screen with the same custom logo.
+This plugin allows a user to customize their Admin panel by adding their own logo to the header. It also replaces the WordPress logo on the login screen with the same custom logo. Tested in Firefox, Safari, Chrome and IE.
 
 == Installation ==
 
@@ -19,7 +18,7 @@ This plugin allows a user to customize their Admin panel by adding their own log
 3. Activate the plugin through the 'Plugins' menu in WordPress.
 4. Go to Settings => Add Logo to Admin and set your options and add your logo.
 
-== Frequently Asked Questions == 
+== Frequently Asked Questions ==
 
 1) How do I add my own logo?
 
@@ -27,14 +26,33 @@ Just go to Settings => Add Logo to Admin and upload the logo you would like to u
 
 2) How big does my logo need to be?
 
-You can make it any width or height, as well as any file format.
+Your logo should not exceed 326px by 67px or it will not fit perfectly on the login screen.
 
 == Screenshots ==
 
-1. Admin before and after
-2. Login page before and after
+1. Add logo to Admin
+2. Add logo to Login
 
 == Change Log ==
+
+1.5 (2012-10-04)
+<ul>
+<li>Fixed login screen image size</li>
+</ul>
+
+1.5 (2012-01-12)
+<ul>
+<li>Updated for WP 3.3</li>
+<li>Improved coding</li>
+<li>Added security nonce</li>
+</ul>
+
+1.4 (2011-02-18)
+<ul>
+<li>Updated for WP 3.1</li>
+<li>Removed extraneous CSS and JS files</li>
+<li>Improved coding</li>
+</ul>
 
 1.3.3 (2009-03-10)
 <ul>
