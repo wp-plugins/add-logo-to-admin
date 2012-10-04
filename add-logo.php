@@ -4,7 +4,7 @@ Plugin Name: Add Logo to Admin
 Plugin URI: http://bavotasan.com/downloads/add-your-logo-to-the-wordpress-admin-and-login-page/
 Description: Adds a custom logo to your wp-admin and login page.
 Author: c.bavota
-Version: 1.5
+Version: 1.5.1
 Author URI: http://bavotasan.com
 */
 
@@ -14,50 +14,50 @@ add_action('admin_menu', 'add_logo_init');
 $add_logo_upload_dir = wp_upload_dir();
 $add_logo_directory = $add_logo_upload_dir['basedir']. '/logos';
 
-//add page to admin 
+//add page to admin
 function add_logo_init() {
 	global $add_logo_directory, $add_logo_upload_dir;
 	if(!empty($_GET['delete-logo'])) {
 		unlink($add_logo_directory ."/". $_GET['delete-logo']);
 		if($_GET['delete-logo'] == get_option('add_logo_filename')) {
-			update_option('add_logo_filename', ""); 
-			update_option('add_logo_logo', ""); 
+			update_option('add_logo_filename', "");
+			update_option('add_logo_logo', "");
 		}
-		
+
 		$location = str_replace("&delete-logo=". $_GET['delete-logo'], "", $_SERVER['REQUEST_URI']."&deleted=true");
 		header("Location: $location");
-		die();		
+		die();
 	}
 
 	if(!empty($_POST['add_logo_submit'])) {
 		if (!wp_verify_nonce($_POST['add_logo_to_admin_nonce'], 'add_logo_to_admin_nonce'))
 			exit();
-		
+
 		if ($_FILES["file"]["type"]){
 			$image = str_replace(" ", "-", $_FILES["file"]["name"]);
 			move_uploaded_file($_FILES["file"]["tmp_name"],
 			$add_logo_directory .'/'. $image);
 			update_option('add_logo_logo', $add_logo_upload_dir['baseurl'] . "/logos/" . $image);
-			update_option('add_logo_filename', $image); 
+			update_option('add_logo_filename', $image);
 		}
-		
+
 		if($_POST['add_logo_on_login']) update_option('add_logo_on_login',$_POST['add_logo_on_login']);
-		if($_POST['add_logo_on_admin']) update_option('add_logo_on_admin',$_POST['add_logo_on_admin']);	
-	
+		if($_POST['add_logo_on_admin']) update_option('add_logo_on_admin',$_POST['add_logo_on_admin']);
+
 		if($_POST['add_logo_filename']) {
 			update_option('add_logo_filename',$_POST['add_logo_filename']);
 			update_option('add_logo_logo',  $add_logo_upload_dir['baseurl'] . "/logos/" . $_POST['add_logo_filename']);
-		}	
-		
+		}
+
 		if($_POST['saved']==true) {
 			$location = $_SERVER['REQUEST_URI'];
 		} else {
-			$location = str_replace("&deleted=true", "", $_SERVER['REQUEST_URI']."&saved=true");		
+			$location = str_replace("&deleted=true", "", $_SERVER['REQUEST_URI']."&saved=true");
 		}
 		header("Location: $location");
 		die();
-		
-	}	
+
+	}
 	$add_logo_page = add_options_page('Add Logo to Admin', 'Add Logo to Admin', "manage_options", __FILE__, 'add_logo_options');
 
 	//add logo to admin if "yes" is selected
@@ -87,32 +87,32 @@ function add_logo_script() {
 /* ]]> */
 </script>';
 }
-	
+
 //add logo to login if "yes" is selected
 if(get_option('add_logo_on_login') == "yes") {
-	add_action('login_head', 'login_logo_css');	
+	add_action('login_head', 'login_logo_css');
 	function login_logo_css() {
 		echo '<style type="text/css">
-.login h1 a { background-image: url('.get_option('add_logo_logo').'); }
+.login h1 a { background-image: url('.get_option('add_logo_logo').'); background-size: 326px auto; }
 </style>'."\n";
 	}
 }
 
-function add_logo_settings_link( $links ) { 
-	$settings_link = '<a href="options-general.php?page=add-logo-to-admin/add-logo.php">Settings</a>'; 
-	array_unshift( $links, $settings_link ); 
-	return $links; 
+function add_logo_settings_link( $links ) {
+	$settings_link = '<a href="options-general.php?page=add-logo-to-admin/add-logo.php">Settings</a>';
+	array_unshift( $links, $settings_link );
+	return $links;
 }
- 
-$plugin = plugin_basename(__FILE__); 
+
+$plugin = plugin_basename(__FILE__);
 add_filter("plugin_action_links_$plugin", 'add_logo_settings_link' );
 
 //set default options
-function set_add_logo_options() {	
+function set_add_logo_options() {
 	add_option('add_logo_on_login','yes');
-	add_option('add_logo_on_admin','yes');	
-	add_option('add_logo_logo',get_option("siteurl").'/wp-content/plugins/add-logo-to-admin/images/logo.png');	
-	add_option('add_logo_filename', 'logo.png');	
+	add_option('add_logo_on_admin','yes');
+	add_option('add_logo_logo',get_option("siteurl").'/wp-content/plugins/add-logo-to-admin/images/logo.png');
+	add_option('add_logo_filename', 'logo.png');
 }
 
 //delete options upon plugin deactivation
@@ -127,10 +127,10 @@ register_activation_hook(__FILE__,'set_add_logo_options');
 register_deactivation_hook(__FILE__,'unset_add_logo_options');
 
 //creating the admin page
-function add_logo_options() { 
+function add_logo_options() {
 	global $add_logo_directory, $add_logo_upload_dir;
 	if(!file_exists($add_logo_directory)) mkdir($add_logo_directory, 0755);
-	
+
 	$default_login = get_option('add_logo_on_login');
 	$default_admin = get_option('add_logo_on_admin');
 	$the_logo = get_option('add_logo_logo');
@@ -152,7 +152,7 @@ function add_logo_options() {
             <input type="radio" name="add_logo_on_login" value="yes" <?php checked($default_login, "yes"); ?> />&nbsp;Yes&nbsp;&nbsp;
             <input type="radio" name="add_logo_on_login" value="no" <?php checked($default_login, "no"); ?> />&nbsp;No
         </td>
-         </tr>   
+         </tr>
         <tr valign="top">
         <th scope="row" style="width: 370px;">
             <label for="add_logo_on_admin">Would you like your logo to appear on the admin pages?</label>
@@ -172,25 +172,25 @@ function add_logo_options() {
             <?php
                 $directory = $add_logo_upload_dir['baseurl'] . "/logos/";
                 //update_option('add_logo_logo', $directory.get_option('add_logo_filename'));
-                // Open the folder 
-                $dir_handle = @opendir($add_logo_directory) or die("Unable to open $add_logo_directory"); 
-                // Loop through the files 
+                // Open the folder
+                $dir_handle = @opendir($add_logo_directory) or die("Unable to open $add_logo_directory");
+                // Loop through the files
                 $count = 1;
-                while ($file = readdir($dir_handle)) { 
-                
+                while ($file = readdir($dir_handle)) {
+
                     if($file == "." || $file == ".." || $file == "index.php" ) {
-                        continue; 
+                        continue;
                         }
                     if($count==1) { echo "<br /><br />Select which logo you would like to use.<br />"; $count++; }
                     if($file == get_option('add_logo_filename')) { $checked = "checked"; } else { $checked = ""; }
-                    echo "<br /><table><tr><td style=\"padding-right: 5px;\"><img src=\"$directory$file\" style=\"max-height:100px;border:1px solid #aaa;padding:10px;\" /></td><td><input id=\"add_logo_filename\" name=\"add_logo_filename\" type=\"radio\" value=\"$file\" $checked />&nbsp;Select<br /><br /><a href=\"options-general.php?page=add-logo-to-admin/add-logo.php&delete-logo=$file\">&laquo; Delete</a></td></tr></table>"; 
-                } 
-                
-                // Close 
-                closedir($dir_handle); 
+                    echo "<br /><table><tr><td style=\"padding-right: 5px;\"><img src=\"$directory$file\" style=\"max-height:100px;border:1px solid #aaa;padding:10px;\" /></td><td><input id=\"add_logo_filename\" name=\"add_logo_filename\" type=\"radio\" value=\"$file\" $checked />&nbsp;Select<br /><br /><a href=\"options-general.php?page=add-logo-to-admin/add-logo.php&delete-logo=$file\">&laquo; Delete</a></td></tr></table>";
+                }
+
+                // Close
+                closedir($dir_handle);
              ?>    </td>
         </tr>
-        </table>   
+        </table>
         <p class="submit">
         <input type="submit" name="add_logo_submit" class="button-primary" value="Save Changes" />
         </p>
@@ -199,4 +199,4 @@ function add_logo_options() {
         <!-- Add Logo to Admin admin box end-->
     </div>
  <?php
- }  
+ }
