@@ -5,8 +5,8 @@ Tags: custom logo, admin, login, wp-admin, admin logo
 Text Domain: add-logo
 Domain Path: /languages
 Requires at least: 3.5
-Tested up to: 3.8
-Stable tag: 1.6
+Tested up to: 4.3
+Stable tag: 1.6.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,6 +39,11 @@ Your logo shouldn't exceed 320px by 80px or it will be resized on the login scre
 2. How your logo will appear on the login screen
 
 == Change Log ==
+
+= 1.6.1 (2015-08-18) =
+
+* Small CSS update
+* Updated version and stable tag
 
 = 1.6 (2014-02-12) =
 

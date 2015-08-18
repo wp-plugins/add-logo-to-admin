@@ -4,7 +4,7 @@ Plugin Name: Add Logo to Admin
 Plugin URI: http://bavotasan.com/2011/add-your-logo-to-the-wordpress-admin-and-login-page/
 Description: Adds a custom logo to your wp-admin and login page.
 Author: c.bavota
-Version: 1.6
+Version: 1.6.1
 Author URI: http://bavotasan.com
 Text Domain: add-logo
 Domain Path: /languages
@@ -110,7 +110,7 @@ if ( ! class_exists( 'WP_Add_Logo_To_Admin' ) ) {
 <style>
 body.login div#login h1 a {
     background-image: url(<?php echo esc_url( $image ); ?>);
-    background-size: contain;
+    background-size: inherit;
     width: 100%;
 }
 </style>
